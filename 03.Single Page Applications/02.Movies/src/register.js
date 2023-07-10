@@ -1,13 +1,19 @@
-import { showView } from "./utils.js";
+import { showView, updateNavBar } from "./utils.js";
+import { homePage } from "./homePage.js";
+
 
 
 const section = document.getElementById('form-sign-up');
-//const registerForm = document.getElementById('register-form')
+const form = section.querySelector('form');
+form.addEventListener('submit', onRegister);
 
 export function register() {
-   const form = section.querySelector('form').addEventListener('submit', onRegister);
-   // registerForm.addEventListener('submit', onRegister);
+  // const form = document.getElementById('register-form')
 
+   //form.addEventListener('submit', onRegister);
+   // registerForm.addEventListener('submit', onRegister);
+showView(section)
+}
     async function onRegister(event) {
         event.preventDefault();
 
@@ -31,8 +37,8 @@ export function register() {
 
         try {
             const response = await fetch(`http://localhost:3030/users/register`, {
-                methods: 'POST',
-                headeres: {
+                method: 'POST',
+                headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ email, password })
@@ -48,13 +54,14 @@ export function register() {
             sessionStorage.setItem('loggedUser', data.email);
             sessionStorage.setItem('id', data._id);
 
-            section.reset()
+            form.reset()
             showView(section);
 
         } catch (err) {
             alert(err.message)
         }
 
+        homePage();
+        updateNavBar();
     }
 
-}

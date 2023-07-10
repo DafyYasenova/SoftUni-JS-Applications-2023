@@ -7,13 +7,6 @@ import { updateNavBar } from "./utils.js";
 
 document.querySelector('nav').addEventListener('click', onNavigate);
 
-// const routes = {
-//     'home-nav': homePage,
-//     'login-nav': login,
-//     'register-nav': register,
-//     'logout-nav': logout,
-
-// }
 
 const routes = {
     '/': homePage,
@@ -28,10 +21,9 @@ function onNavigate(event) {
     if (event.target.tagName === "A" && event.target.href) {
 
         const url = new URL(event.target.href);
-        const view = routes[url.pathname]
-        // const view = routes[event.target.id];
+        const view = routes[url.pathname];
+      
         view()
-
 
     }
 }

@@ -4,10 +4,10 @@ import { showView, updateNavBar } from "./utils.js";
 const section = document.getElementById('form-login');
 
 const form = section.querySelector('form');
-form.addEventListener('submit', onSubmit);
+
 
 export function loginPage() {
-console.log('loginPage')
+    form.addEventListener('submit', onSubmit);
     showView(section);
 }
 
@@ -28,7 +28,7 @@ async function onSubmit(event) {
     async function login(email, password){
         try {
     
-            const response = await fetch('http://localhost:3030/users', {
+            const response = await fetch('http://localhost:3030/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
