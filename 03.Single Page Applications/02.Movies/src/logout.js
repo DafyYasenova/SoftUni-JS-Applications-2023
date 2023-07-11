@@ -5,7 +5,7 @@ export async function logout() {
 
   const user = JSON.parse(sessionStorage.user);
 
-  await fetch(`http://localhost:3030/users`, {
+  await fetch(`http://localhost:3030/users/logout`, {
     method: "GET",
     headers: {
       "X-Authorization": user.accessToken,
@@ -15,4 +15,4 @@ export async function logout() {
   sessionStorage.removeItem("user");
 
   updateNavBar();
-}
+}  
