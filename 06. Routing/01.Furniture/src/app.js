@@ -8,16 +8,16 @@ import { createPage } from './views.js/catalog.js';
 import { editPage } from './views.js/catalog.js';
 import { loginPage } from './views.js/catalog.js';
 import { registerPage } from './views.js/catalog.js';
+import { logout } from './api.js';
+import { getUserData } from './util.js';
 
 
-import * as api from './api/data.js';
-window.api = api;
+// import * as api from './api/data.js';
+// window.api = api;
 
 const root = document.querySelector('.container');
 
-
-
-//MidelWhere:
+//Midlewhere:
 page(decorateContext);
 
 page('/', catalogPage);
@@ -28,11 +28,35 @@ page('/login', loginPage);
 page('/my-furniture', catalogPage);
 page('/register', registerPage);
 
+
+updateUserNav();
 page.start();  
 
 
 function decorateContext (ctx, next){
 ctx.render = (context) => render(context, root);
+ctx.updateUserNav = updateUserNav;
 
 next();
+
+}
+
+function updateUserNav(){
+    const userData = getUserData();
+    
+    if (userData){
+        document.getElementById('user').style.display = 'inline-block';
+        document.getElementById('guest').style.display = 'none';
+    }else{
+        document.getElementById('user').style.display = 'none';
+        document.getElementById('guest').style.display = 'inline-block';
+    }
+}
+
+document.getElementById('logoutBtn').addEventListener('click', onLogout);
+
+async function onLogout (){
+await logout();
+updateUserNav();
+page.redirect('/');
 }

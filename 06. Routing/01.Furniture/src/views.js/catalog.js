@@ -1,22 +1,29 @@
-import {html, until} from '../app.js'
-import { getItems } from '../data.js';
+import { html, until } from '../app.js'
+import { getItems, getMyItems } from '../data.js';
+import { getUserData } from '../util.js';
 
 
 
-const catalogTemplate = (dataPromise) => html `
+const catalogTemplate = (dataPromise, userpage) => html`
  <div class="row space-top">
             <div class="col-md-12">
+                ${userpage 
+                    ? html`
+                    <h1>My Furniture</h1>
+                    <p>This is a list of your publications.</p>`
+                : html`
                 <h1>Welcome to Furniture System</h1>
-                <p>Select furniture from the catalog to view details.</p>
+                <p>Select furniture from the catalog to view details.</p>`}
+               
             </div>
         </div>
         <div class="row space-top">
             <!-- optional case  -->
             ${until(dataPromise, html`<p>Loading &hellip;</p>`)} 
-        </div>`;  
+        </div>`;
 
 
-const itemTemplate = (item)=> html`
+const itemTemplate = (item) => html`
   <div class="col-md-4">
                 <div class="card text-white bg-primary">
                     <div class="card-body">
@@ -34,12 +41,20 @@ const itemTemplate = (item)=> html`
 
 
 
-export function catalogPage(ctx){
-ctx.render(catalogTemplate())
+export function catalogPage(ctx) {
+
+    const userpage = ctx.pathname == '/my-furniture';
+    ctx.render(catalogTemplate(loadItems(userpage), userpage))
 }
 
-async function loadItems(){
-    const items = await getItems();
-    
+async function loadItems(userpage) {
+    let items = [];
+
+    if (userpage) {
+        const userId = getUserData().id;
+        items = await getMyItems(userId);
+    } else {
+        items= await getItems();
+    }
     return items.map(itemTemplate);
 }
