@@ -1,5 +1,5 @@
-import { clearUserData, getUserData, setUserData } from '../util.js';
-import { register } from './data';
+import { clearUserData, getUserData, setUserData } from './util.js';
+
 
 const host = 'http://localhost:3030';
 
@@ -20,7 +20,6 @@ async function request(url, options) {
         } else {
             return response.json();
         }
-
     } catch (err) {
         alert(err.message);
         throw err;
@@ -30,13 +29,13 @@ async function request(url, options) {
 function createOptions(method = 'get', data) {
     const options = {
         method,
-        headers: {}
+        headers: {},
     };
 
     if (data !== undefined) {
         options.headers['Content-Type'] = 'application/json';
         options.body = JSON.stringify(data);
-    };
+    }
 
     const userData = getUserData();
     if (userData !== null) {
@@ -46,47 +45,41 @@ function createOptions(method = 'get', data) {
     return options;
 }
 
-
 export async function get(url) {
     return request(url, createOptions());
 }
 
 export async function post(url, data) {
-    return request(url, createOptions('put', data));
+    return request(url, createOptions('post', data));
 }
 
 export async function put(url, data) {
-    return request(url, createOptions('post', data));
+    return request(url, createOptions('put', data));
 }
 
 export async function del(url) {
     return request(url, createOptions('delete'));
 }
 
-
 export async function login(email, password) {
-    const result = await post('users/login', { email, password });
-
+    const result = await post('/users/login', { email, password });
 
     const userData = {
         email: result.email,
         id: result._id,
-        accessToken: result.accessToken
-    }
+        accessToken: result.accessToken,
+    };
     setUserData(userData);
-
 }
 
-
 export async function register(email, password) {
-    const result = await post('users/register', { email, password });
-
+    const result = await post('/users/register', { email, password });
 
     const userData = {
         email: result.email,
         id: result._id,
-        accessToken: result.accessToken
-    }
+        accessToken: result.accessToken,
+    };
     setUserData(userData);
 }
 
