@@ -1,11 +1,11 @@
 import page from '../node_modules/page/page.mjs'
 import { render} from '../node_modules/lit-html/lit-html.js'; 
-import { catalogPage } from './views.js/catalog.js';
-import { detailsPage } from './views.js/details.js';
-import { createPage } from './views.js/create.js';
-import { editPage } from './views.js/edit.js';
-import { loginPage } from './views.js/login.js';
-import { registerPage } from './views.js/register.js';
+import { catalogPage } from './views/catalog.js';
+import { detailsPage } from './views/details.js';
+import { createPage } from './views/create.js';
+import { editPage } from './views/edit.js';
+import { loginPage } from './views/login.js';
+import { registerPage } from './views/register.js';
 import { logout } from './api.js';
 import { getUserData } from './util.js';
 
