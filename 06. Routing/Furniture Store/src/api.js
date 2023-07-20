@@ -1,5 +1,5 @@
 import { clearUserData, getUserData, setUserData } from './util.js';
-
+//import { register } from './data';
 
 const host = 'http://localhost:3030';
 
