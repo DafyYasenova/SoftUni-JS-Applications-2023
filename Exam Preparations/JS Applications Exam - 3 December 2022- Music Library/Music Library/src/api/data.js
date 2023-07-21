@@ -6,7 +6,9 @@ export async function getAllItems() {
 }
 
 export async function getById(id) {
-    return get('/' + id);
+    return get('/data/albums/'+ id);
+    //  /data/albums/:id
+
 
 }
 export async function createItem(ideaData) {
@@ -17,6 +19,6 @@ export async function deleteById(id){
     return del('' +id)
 }
 
-export async function editById(id){
-    return put ('...')
+export async function editById(id, data){
+    return put ('/data/albums/'+ id, data);
 }

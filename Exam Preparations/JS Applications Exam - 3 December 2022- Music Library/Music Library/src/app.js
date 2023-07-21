@@ -8,6 +8,7 @@ import { showCreate } from './views/create.js';
 import { showEdit } from './views/edit.js';
 import { showDetails } from './views/details.js';
 import { getUserData } from './utils.js';
+import { logout } from './api/userAuth.js';
 
 
 const navigationTemplate = (user) => html`
@@ -19,7 +20,7 @@ ${user
         <!-- Logged-in users -->
         <div class="user">
           <a href="/create">Add Album</a>
-          <a href="/logout">Logout</a>
+          <a href="/logout" @click=${onLogout}>Logout</a>
         </div>`
         : html`
         <!-- Guest users -->
@@ -52,6 +53,11 @@ function decorateContext(ctx, next) {
     }
     next();
 
+}
+
+function onLogout(){
+    logout();
+    page.redirect('/')
 }
 page(decorateContext);
 page(contextMidlewhere);

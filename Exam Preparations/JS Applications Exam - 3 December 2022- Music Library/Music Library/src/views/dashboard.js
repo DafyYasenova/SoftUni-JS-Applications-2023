@@ -36,5 +36,6 @@ const dashboardTemplate= (albums) => html`
 export async function showDashboard(ctx){
 const albums = await getAllItems();
 
+    // check empty collection: ctx.render(dashboardTemplate([]));
     ctx.render(dashboardTemplate(albums));
 }
