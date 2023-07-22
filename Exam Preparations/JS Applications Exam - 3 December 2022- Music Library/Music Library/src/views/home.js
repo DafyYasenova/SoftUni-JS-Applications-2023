@@ -1,6 +1,6 @@
 import { html } from "../../node_modules/lit-html/lit-html.js";
 
-const homeTemplate= () => html`
+const homeTemplate = () => html`
 
  <section id="home">
         <img src="./images/landing.png" alt="home" />
@@ -10,6 +10,6 @@ const homeTemplate= () => html`
       </section>
 `;
 
-export function showHome(ctx){
+export function showHome(ctx) {
     ctx.render(homeTemplate());
 }

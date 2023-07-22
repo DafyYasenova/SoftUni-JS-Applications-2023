@@ -1,7 +1,7 @@
-import {get, post} from './api.js'
+import { get, post } from './api.js'
 import { setUserData, clearUserData } from '../utils.js';
 
-export async function login(email, password){
+export async function login(email, password) {
 
     const result = await post('/users/login', { email, password });
 
@@ -13,7 +13,7 @@ export async function login(email, password){
     setUserData(userData);
 }
 
-export async function register(email, password){
+export async function register(email, password) {
     const result = await post('/users/register', { email, password });
 
     const userData = {
@@ -24,7 +24,7 @@ export async function register(email, password){
     setUserData(userData);
 }
 
-export async function logout(){
+export async function logout() {
 
     await get('/users/logout');
     clearUserData();

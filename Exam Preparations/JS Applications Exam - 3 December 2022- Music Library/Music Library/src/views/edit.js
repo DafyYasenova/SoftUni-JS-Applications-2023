@@ -1,12 +1,12 @@
 import { html } from "../../node_modules/lit-html/lit-html.js";
-import { getById } from "../api/data.js";
+import { editById, getById } from "../api/data.js";
 
-const editTemplate= (alb, onSubmit) => html`
+const editTemplate = (alb, onSubmit) => html`
  <section id="edit">
         <div class="form">
           <h2>Edit Album</h2>
-          <form class="edit-form" @submit={onSubmit}>
-            <!-- add value=${alb.prop} -->
+          <form class="edit-form" @submit=${onSubmit}>
+          
             <input type="text" name="singer" id="album-singer" placeholder="Singer/Band" value=${alb.singer} />
             <input type="text" name="album" id="album-album" placeholder="Album" value=${alb.album} />
             <input type="text" name="imageUrl" id="album-img" placeholder="Image url" value=${alb.imageUrl} />
@@ -20,13 +20,30 @@ const editTemplate= (alb, onSubmit) => html`
       </section>
 `;
 
-export async function showEdit(ctx){
+export async function showEdit(ctx) {
 
-    const album = await getById(ctx.params.id);
+  const album = await getById(ctx.params.id);
 
-    ctx.render(editTemplate(album, onSubmit));
+  ctx.render(editTemplate(album, onSubmit));
 
-    async function onSubmit(){
+  async function onSubmit(event) {
+    event.preventDefault();
 
+
+    const formData = new FormData(event.target);
+
+    const data = Object.fromEntries(formData);
+
+    if (data.singer == '' || data.album == '' || data.release == '' || data.imageUrl == '' || data.label == '' || data.sales == '') {
+      return;
     }
+
+    try {
+      await editById(ctx.params.id, data);
+      ctx.page.redirect('/edit/' + ctx.params.id)
+    } catch (err) {
+      alert(err.message)
+    }
+
+  }
 }

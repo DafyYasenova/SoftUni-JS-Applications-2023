@@ -41,7 +41,7 @@ function updateNav(ctx, next) {
 function contextMidlewhere(ctx, next) {
     const user = getUserData();
 
-    if(user){
+    if (user) {
         ctx.user = user;
     }
     next();
@@ -55,7 +55,7 @@ function decorateContext(ctx, next) {
 
 }
 
-function onLogout(){
+function onLogout() {
     logout();
     page.redirect('/')
 }
@@ -70,7 +70,5 @@ page('/dashboard', showDashboard);
 page('/create', showCreate);
 page('/edit/:id', showEdit);
 page('/details/:id', showDetails);
-
-
 
 page.start();

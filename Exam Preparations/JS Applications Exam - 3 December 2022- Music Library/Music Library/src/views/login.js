@@ -19,26 +19,26 @@ const loginTemplate = (onSubmit) => html`
 
 export function showLogin(ctx) {
 
-    ctx.render(loginTemplate(onSubmit));
+  ctx.render(loginTemplate(onSubmit));
 
 
-    async function onSubmit(event) {
-        event.preventDefault();
+  async function onSubmit(event) {
+    event.preventDefault();
 
-        const formData = new FormData(event.target);
-        const userData= Object.fromEntries(formData);
-        try {
+    const formData = new FormData(event.target);
+    const userData = Object.fromEntries(formData);
+    try {
 
-            if (userData.email == '' || userData.password == '') {
-                return alert('All fields are required!');
-            }
-            await login(userData.email, userData.password );
+      if (userData.email == '' || userData.password == '') {
+        return alert('All fields are required!');
+      }
+      await login(userData.email, userData.password);
 
-            ctx.page.redirect('/dashboard')
-        } catch (err) {
-            alert(err.message);
-        }
-
+      ctx.page.redirect('/dashboard')
+    } catch (err) {
+      alert(err.message);
     }
+
+  }
 }
 

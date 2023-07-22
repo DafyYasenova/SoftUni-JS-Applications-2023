@@ -1,7 +1,7 @@
 import { html } from "../../node_modules/lit-html/lit-html.js";
 import { register } from "../api/userAuth.js";
 
-const registerTemplate= (onSubmit) => html`
+const registerTemplate = (onSubmit) => html`
  <section id="register">
         <div class="form">
           <h2>Register</h2>
@@ -16,27 +16,27 @@ const registerTemplate= (onSubmit) => html`
       </section>
 `;
 
-export function showRegister(ctx){
-    ctx.render(registerTemplate(onSubmit));
+export function showRegister(ctx) {
+  ctx.render(registerTemplate(onSubmit));
 
 
-    async function onSubmit(event) {
-        event.preventDefault();
+  async function onSubmit(event) {
+    event.preventDefault();
 
-        const formData = new FormData(event.target);
-        const userData= Object.fromEntries(formData);
-        
-        try {
+    const formData = new FormData(event.target);
+    const userData = Object.fromEntries(formData);
 
-            if (userData.email == '' || userData.password == '') {
-                return alert('All fields are required!');
-            }
-            await register(userData.email, userData.password );
+    try {
 
-            ctx.page.redirect('/dashboard')
-        } catch (err) {
-            alert(err.message);
-        }
+      if (userData.email == '' || userData.password == '') {
+        return alert('All fields are required!');
+      }
+      await register(userData.email, userData.password);
 
+      ctx.page.redirect('/dashboard')
+    } catch (err) {
+      alert(err.message);
     }
+
+  }
 }

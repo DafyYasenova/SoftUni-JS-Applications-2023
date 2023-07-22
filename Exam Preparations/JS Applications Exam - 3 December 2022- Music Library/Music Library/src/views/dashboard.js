@@ -1,11 +1,11 @@
 import { html } from "../../node_modules/lit-html/lit-html.js";
 import { getAllItems } from "../api/data.js";
 
-const dashboardTemplate= (albums) => html`
+const dashboardTemplate = (albums) => html`
  <section id="dashboard">
         <h2>Albums</h2>
-        ${albums.length != 0
-        ? html`
+        ${albums.length !== 0
+    ? html`
         <ul class="card-wrapper">
           <!-- Display a li with information about every post (if any)-->
           ${albums.map((alb) => html`
@@ -23,19 +23,18 @@ const dashboardTemplate= (albums) => html`
           `)}
         </ul>
         `
-        : html`
+    : html`
         <!-- Display an h2 if there are no posts -->
         <h2>There are no albums added yet.</h2>
         `}
-        
       </section>
 `;
 
 
 
-export async function showDashboard(ctx){
-const albums = await getAllItems();
+export async function showDashboard(ctx) {
+  const albums = await getAllItems();
 
-    // check empty collection: ctx.render(dashboardTemplate([]));
-    ctx.render(dashboardTemplate(albums));
+  // check empty collection: ctx.render(dashboardTemplate([]));
+  ctx.render(dashboardTemplate(albums));
 }
