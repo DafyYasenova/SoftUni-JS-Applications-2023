@@ -1,7 +1,7 @@
-import { html} from "../../node_modules/lit-html/lit-html.js";
+import { html, nothing } from "../../node_modules/lit-html/lit-html.js";
 import { searchById } from '../api/data.js';
 
-const searchTemplate = (items = [], onSearch) => html`
+const searchTemplate = (items = [], onSearch, isInitialRender) => html`
 <section id="searchPage">
 <h1>Search by Name</h1>
 
@@ -13,14 +13,19 @@ const searchTemplate = (items = [], onSearch) => html`
 <h2>Results:</h2>
 
 <!--Show after click Search button-->
+${!isInitialRender
+        ? html`
 <div class="search-result">
     ${items.length == 0
-        ? html`
+                ? html`
     <p class="no-result">No result.</p>`
-        : html`${items.map(album => cardMatchTemplate(album))}`
-        }
-</div>
-</section>`
+                : html`${items.map(album => cardMatchTemplate(album))}`
+            }
+</div>`
+        : nothing}
+
+</section>`;
+
 
 
 const cardMatchTemplate = (album) => html`
@@ -37,26 +42,28 @@ const cardMatchTemplate = (album) => html`
     <div class="btn-group">
         <a href="/details/${album._id}" id="details">Details</a>
     </div>
-</div>`
+</div>`;
+
 export function showSearch(ctx) {
 
-    let items = '';
+    let items = [];
 
     async function onSearch() {
-        // event.preventDefault();
+
         const searchText = document.getElementById('search-input');
 
         const query = searchText.value;
         if (!query) {
-            alert('What are you searcing for?');
+            alert('What are you searching for?');
             return;
         }
 
         items = await searchById(query);
+
         console.log(items);
 
         searchText.value = '';
-
+        ctx.render(searchTemplate(items, onSearch,));
     }
-    ctx.render(searchTemplate(items, onSearch));
+    ctx.render(searchTemplate(items, onSearch, true));
 }

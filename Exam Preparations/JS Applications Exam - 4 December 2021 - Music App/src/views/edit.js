@@ -52,7 +52,8 @@ export async function showEdit(ctx) {
 
     const data = Object.fromEntries(formData);
 
-    if (data.name == '' || data.imgUrl == '' || data.price == '' || data.releaseDate == '' || data.artist == '' || data.genre == '' || data.description == '') {
+    if (data.name == '' || data.imgUrl == '' || data.price == '' || data.releaseDate == '' ||
+     data.artist == '' || data.genre == '' || data.description == '') {
       return;
     }
 
@@ -60,9 +61,9 @@ export async function showEdit(ctx) {
       await editById(ctx.params.id, data);
       event.target.reset();
       
-      ctx.page.redirect('/details/' + ctx.params.id)
+      ctx.page.redirect('/details/' + ctx.params.id);
     } catch (err) {
-      alert(err.message)
+      alert(err.message);
     }
 
   }

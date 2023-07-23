@@ -13,32 +13,34 @@ import { showSearch } from './views/search.js';
 
 const navigationTemplate = (user) => html`
 <nav>
-                <img src="./images/headphones.png">
-                <a href="/">Home</a>
-                <ul>
-                    <!--All user-->
-                    <li><a href="/catalog">Catalog</a></li>
-                    <li><a href="/search">Search</a></li>
-                   <!--Only user-->
-                    ${user
-                    ? html `
-                    <li><a href="/create">Create Album</a></li>
-                    <li><a href="/logout">Logout</a></li>`
-                    : html`
+        <img src="./images/headphones.png">
+        <a href="/">Home</a>
+        <ul>
+        <!--All user-->
+        <li><a href="/catalog">Catalog</a></li>
+        <li><a href="/search">Search</a></li>
+        <!--Only user-->
+        ${user
+        ? html `
+            <li><a href="/create">Create Album</a></li>
+            <li><a href="/logout">Logout</a></li>`
+        : html`
                      <!--Only guest-->
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
-                    `}
-                </ul>
-            </nav>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        `}
+        </ul>
+</nav>
 `;
 
 const root = document.querySelector('#main-content');
 const rootNav = document.querySelector('.header-nav');
 
 function updateNav(ctx, next) {
-    render(navigationTemplate(ctx.user), rootNav);
+    render(navigationTemplate(ctx ? ctx.user : null), rootNav);
+    if(next){
     next();
+    }
 }
 
 function contextMidleware(ctx, next) {
@@ -53,6 +55,7 @@ function contextMidleware(ctx, next) {
 
 function onLogout() {
     logout();
+    updateNav();
     page.redirect('/');
 }
 

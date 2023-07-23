@@ -47,7 +47,7 @@ const get = request.bind(null, 'GET');
 const post = request.bind(null, 'POST');
 const put = request.bind(null, 'PUT');
 const del = request.bind(null, 'DELETE');
-//const patch = request.bind(null, 'PATCH');
+
 
 export {
     get, post, put, del

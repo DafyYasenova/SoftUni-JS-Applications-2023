@@ -2,7 +2,6 @@ import { html } from "../../node_modules/lit-html/lit-html.js";
 import { login } from "../api/userAuth.js";
 
 
-
 const loginTemplate = (onSubmit) => html`
 <section id="loginPage">
             <form @submit=${onSubmit}>

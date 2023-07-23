@@ -30,6 +30,8 @@ const detailsTemplate = (album, isOwner, onDelete) =>
  </div>
 </section>
 `;
+
+
 export async function showDetails(ctx) {
 
    const id = ctx.params.id;

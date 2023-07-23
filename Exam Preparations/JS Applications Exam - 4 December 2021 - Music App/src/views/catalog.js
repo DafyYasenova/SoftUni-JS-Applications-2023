@@ -14,34 +14,32 @@ const cardBoxTemplate = (album, user) => html`
               <p class="price">Price: ${album.price} </p>
               <p class="date">Release Date: ${album.releaseDate} </p>
          </div>
-      
+  ${user 
+  ? html`    
          <a href="/details/${album._id}" id="details">Details</a>
          <div class="btn-group">
-        </div>
+        </div>`
+        : nothing}
       
      </div>
  </div>`;
 
 
-const catalogTemplate = (albums) => html`
+const catalogTemplate = (albums, user) => html`
 <section id="catalogPage">
     <h1>All Albums</h1>
-    ${albums.length > 0 ? albums.map(cardBoxTemplate) : html`
+    ${albums.length > 0 ? albums.map((album)=> cardBoxTemplate(album, user)) : html`
         <p>No Albums in Catalog!</p>`
     }
  </section>
 `;
 
 export async function showCatalog(ctx) {
+
     const albums = await getAllItems()
 
     const user = getUserData();
 
     ctx.render(catalogTemplate(albums, ctx.user));
 
-    //     const id = ctx.params.id;
-    //    console.log(id)
-    //     //const album = await getById(id);
-
-    // todo details hiden button if non user
 }
