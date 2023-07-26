@@ -28,7 +28,6 @@ const navigationTemplate = (user) => html`
             <a href="/search">Search</a>
           </div>
 
-          <!-- Logged-in users -->
           ${user 
           ? html`
           <div class="user">
@@ -36,7 +35,7 @@ const navigationTemplate = (user) => html`
             <a href="/logout">Logout</a>
           </div>`
             : html`
-          <!-- Guest users -->
+        
           <div class="guest">
             <a href="/login">Login</a>
             <a href="/register">Register</a>`

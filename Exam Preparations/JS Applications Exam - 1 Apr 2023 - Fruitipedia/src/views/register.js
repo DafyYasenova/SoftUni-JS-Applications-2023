@@ -1,7 +1,7 @@
 import { html } from "../../node_modules/lit-html/lit-html.js";
 import { register } from "../api/userAuth.js";
 
-// @submit=${onSubmit}
+
 const registerTemplate= (onSubmit) => html`
 <section id="register">
           <div class="form">
@@ -47,7 +47,7 @@ export function showRegister(ctx) {
               if (data.email == '' || data.password == '') {
                   return alert('All fields are required!');
               }
-              if(data.password !== data['re-password']){ // repass have "-"
+              if(data.password !== data['re-password']){ 
                   return alert ('Password don\`t match repass')
               }
               await register(data.email, data.password);

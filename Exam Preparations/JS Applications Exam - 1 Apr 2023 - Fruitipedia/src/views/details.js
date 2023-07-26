@@ -17,7 +17,7 @@ const detailsTemplate= (fruit, isOwner, onDelete) => html`
                       ${fruit.nutrition}
                         </p>
               </div>
-               <!--Edit and Delete are only for creator-->
+              
           ${isOwner
           ? html `
                <div id="action-buttons">

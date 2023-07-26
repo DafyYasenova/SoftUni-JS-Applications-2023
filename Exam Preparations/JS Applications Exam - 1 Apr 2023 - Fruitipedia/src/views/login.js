@@ -1,7 +1,7 @@
 import { html } from "../../node_modules/lit-html/lit-html.js";
 import { login } from "../api/userAuth.js";
 
-/* onSubmit na formata --  @submit=${onSubmit}   */
+
 const loginTemplate= (onSubmit) => html`
  <section id="login">
           <div class="form">
@@ -35,12 +35,12 @@ export function showLogin(ctx) {
         console.log(data)
         try {
 
-            if (data.email == '' || data.password == '') { // check-prop
+            if (data.email == '' || data.password == '') {
                 return alert('All fields are required!');
             }
             await login(data.email, data.password);
 
-            ctx.page.redirect('/') // check-redirect Path
+            ctx.page.redirect('/')
         } catch (err) {
             alert(err.message);
         }

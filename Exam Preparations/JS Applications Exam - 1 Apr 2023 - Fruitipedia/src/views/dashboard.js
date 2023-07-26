@@ -2,7 +2,6 @@ import { html } from "../../node_modules/lit-html/lit-html.js";
 import { getAllItems } from "../api/data.js";
 
 
-
 const dashboardTemplate = (fruits) => html`
 <h2>Fruits</h2>
         <section id="dashboard">

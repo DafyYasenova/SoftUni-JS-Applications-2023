@@ -20,7 +20,7 @@ export async function deleteById(id){
 export async function editById(id, data){
     return put ('/data/fruits/'+ id, data)
 }
-// search
+
 export async function searchById(query){
     return get (`/data/fruits?where=name%20LIKE%20%22${query}%22`)
 }

@@ -2,7 +2,6 @@ import { html } from "../../node_modules/lit-html/lit-html.js";
 import { getById, editById} from "../api/data.js";
 
 
-// <form @submit=${onSubmit}  ,  .value=${offer.title}
 const editTemplate= (fruit, onSubmit) => html`
  <section id="edit">
           <div class="form">
@@ -57,7 +56,7 @@ export async function showEdit(ctx){
       const formData = new FormData(event.target);
   
       const data = Object.fromEntries(formData);
-  // name property
+  
       if (data.name == '' || data.imageUrl == '' || data.description == '' || data.nutrition == '') {
         return;
       }
@@ -66,7 +65,7 @@ export async function showEdit(ctx){
         await editById(ctx.params.id, data);
         event.target.reset();
         
-        ctx.page.redirect('/details/' + ctx.params.id); // path?
+        ctx.page.redirect('/details/' + ctx.params.id);
       } catch (err) {
         alert(err.message);
       }
