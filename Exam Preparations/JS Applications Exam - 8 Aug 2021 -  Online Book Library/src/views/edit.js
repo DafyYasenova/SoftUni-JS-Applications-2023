@@ -58,7 +58,7 @@ export async function showEdit(ctx){
       const formData = new FormData(event.target);
   
       const data = Object.fromEntries(formData);
-  // name property
+  
       if (data.title == '' || data.imageUrl == '' || data.type == '' || data.description == '') {
         return;
       }
@@ -67,7 +67,7 @@ export async function showEdit(ctx){
         await editById(ctx.params.id, data);
         event.target.reset();
         
-        ctx.page.redirect('/details/' + ctx.params.id); // path?
+        ctx.page.redirect('/details/' + ctx.params.id); 
       } catch (err) {
         alert(err.message);
       }

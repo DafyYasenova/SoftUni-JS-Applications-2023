@@ -37,12 +37,12 @@ export function showLogin(ctx) {
      
         try {
 
-            if (data.email == '' || data.password == '') { // check-prop
+            if (data.email == '' || data.password == '') { 
                 return alert('All fields are required!');
             }
             await login(data.email, data.password);
 event.target.reset();
-            ctx.page.redirect('/dashboard') // check-redirect Path
+            ctx.page.redirect('/dashboard') 
         } catch (err) {
             alert(err.message);
         }

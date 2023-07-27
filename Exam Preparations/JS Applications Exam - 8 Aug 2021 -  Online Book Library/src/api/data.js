@@ -25,15 +25,12 @@ export async function editById(id, data){
     return put ('/data/books/'+ id, data)
 }
 
-
 export async function likeById(bookId) {
     return post('/data/likes', bookId);
 }
 
 export async function getAllLikes(bookId) {
-
-    return get(`/data/likes?where=bookId%3D%22${bookId}%22&distinct=_ownerId&count`)
-
+    return get(`/data/likes?where=bookId%3D%22${bookId}%22&distinct=_ownerId&count`);
 }
 
 export async function getAllLikePerUser(bookId, userId) {

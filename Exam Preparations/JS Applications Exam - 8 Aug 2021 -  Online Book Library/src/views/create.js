@@ -2,7 +2,6 @@ import { html } from "../../node_modules/lit-html/lit-html.js";
 import { createItem } from "../api/data.js";
 
 
-//<form @submit=${onSubmit} 
 const createTemplate= (onSubmit) => html`
 <section id="create-page" class="create">
             <form @submit=${onSubmit} id="create-form" action="" method="">
@@ -60,7 +59,7 @@ export function showCreate(ctx){
 
         try {
             await createItem(data);
-            ctx.page.redirect('/dashboard') //?path
+            ctx.page.redirect('/dashboard') 
             
         } catch (err) {
             alert(err.message);

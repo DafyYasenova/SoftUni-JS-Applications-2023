@@ -1,6 +1,5 @@
 import page from '../node_modules/page/page.mjs';
 import { render, html } from '../node_modules/lit-html/lit-html.js';
-//import { showHome } from './views/home.js';
 import { showLogin } from './views/login.js';
 import { showRegister } from './views/register.js';
 import { showDashboard } from './views/dashboard.js';

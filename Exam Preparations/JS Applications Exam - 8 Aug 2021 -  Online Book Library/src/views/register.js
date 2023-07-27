@@ -46,7 +46,7 @@ export function showRegister(ctx) {
               if (data.email == '' || data.password == '') {
                   return alert('All fields are required!');
               }
-              if(data.password !== data['confirm-pass']){ // repass have "-"
+              if(data.password !== data['confirm-pass']){ 
                   return alert ('Password don\`t match repass')
               }
               await register(data.email, data.password);

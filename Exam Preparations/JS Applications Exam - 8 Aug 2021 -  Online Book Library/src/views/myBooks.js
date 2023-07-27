@@ -4,7 +4,6 @@ import { getMyBook } from "../api/data.js";
 const myBookTemplate = (books) => html`
 <section id="my-books-page" class="my-books">
             <h1>My Books</h1>
-            <!-- Display ul: with list-items for every user's books (if any) -->
            ${books.length > 0
             ? html`
             <ul class="my-books-list">
