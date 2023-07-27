@@ -9,13 +9,9 @@ const detailsTemplate= (fruit, isOwner, onDelete) => html`
             <p id="details-title">${fruit.name}</p>
             <div id="info-wrapper">
               <div id="details-description">
-                <p>
-                 ${fruit.description}
-                  </p>
+                <p>${fruit.description}</p>
                     <p id="nutrition">Nutrition</p>
-                   <p id = "details-nutrition">
-                      ${fruit.nutrition}
-                        </p>
+                   <p id = "details-nutrition">${fruit.nutrition}</p>
               </div>
               
           ${isOwner
