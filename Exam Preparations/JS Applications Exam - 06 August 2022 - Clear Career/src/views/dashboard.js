@@ -27,9 +27,8 @@ const cardTemplate = (offer)=> html`
 export async function showDashboard(ctx){
    
 
-        const offers = await getAllItems()
-    
-        //const user = getUserData();
+    const offers = await getAllItems()
+  
     ctx.render(dashboardTemplate(offers));
        
 }

@@ -17,18 +17,15 @@ const detailsTemplate = (offer, isOwner, onDelete, isLogged, hasApplied, applyCo
             <div id="info-wrapper">
               <div id="details-description">
                 <h4>Description</h4>
-                <span>
-                ${offer.description} </span>
+                <span>${offer.description}</span>
               </div>
               <div id="details-requirements">
                 <h4>Requirements</h4>
-                <span> ${offer.requirements}</span
-                >
+                <span>${offer.requirements}</span>
               </div>
             </div>
             <p>Applications: <strong id="applications">${applyCount}</strong></p>
 
-            <!--Edit and Delete are only for creator-->
           ${isLogged
     ? html`
             <div id="action-buttons">
@@ -38,7 +35,7 @@ const detailsTemplate = (offer, isOwner, onDelete, isLogged, hasApplied, applyCo
             ${isOwner
         ? html`
               <a href="/edit/${offer._id}" id="edit-btn">Edit</a>
-              <a href="javascript:void(0)" @click=${onDelete}  id="delete-btn">Delete</a>`
+              <a href="javascript:void(0)" @click=${onDelete}id="delete-btn">Delete</a>`
         : nothing}
             </div>   
       `

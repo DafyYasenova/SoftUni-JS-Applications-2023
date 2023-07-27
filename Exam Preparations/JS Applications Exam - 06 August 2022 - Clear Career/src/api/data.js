@@ -22,7 +22,6 @@ export async function editById(id, data){
 }
 
 
-// Apply:
 export async function applyById(id){
     return post ('/data/applications', id)
 }
@@ -30,11 +29,8 @@ export async function applyById(id){
 export async function offerById(offerId){
     return get (`/data/applications?where=offerId%3D%22${offerId}%22&distinct=_ownerId&count`)
 }
-// /data/applications?where=offerId%3D%22{offerId}%22&distinct=_ownerId&count
 
 
 export async function offerByIdAndUserId(offerId, userId){
     return get (`/data/applications?where=offerId%3D%22${offerId}%22%20and%20_ownerId%3D%22${userId}%22&count`)
 }
-
-// /data/applications?where=offerId%3D%22{offerId}%22%20and%20_ownerId%3D%22{userId}%22&count
